@@ -20,7 +20,8 @@ jobs:
       run: |
         echo $MY_VAR $MY_NAME
         docker --version    
-
+    - name: checkout
+      uses: actions/checkout@v1
     - name: Build Docker image
       run: |
         mkdir -p $PROJECT_PATH
