@@ -21,6 +21,6 @@ jobs:
             echo $SECRET_USER_NAME
             docker --version
         - name: IF statement based on secret
-          if: $SECRET_USER_NAME=='1'
+          if: env.SECRET_USER_NAME=='1'
           run: |
             echo "ENTERED!"
