@@ -37,3 +37,19 @@ jobs:
                 cd $PROJECT_PATH
                 ls -la
                 docker build -t $PY_DOCKER_CONTAINER_NAME .
+
+    job_1:
+      name: Add 3 and 7
+      runs-on: [self-hosted, linux]
+      steps:
+        - shell: bash
+          run: |
+            expr 3 + 7 > math-homework.txt
+        - name: Upload math result for job 1
+          uses: actions/upload-artifact@v1
+          with:
+            name: test-artf
+            path: test-artf.txt
+
+
+
