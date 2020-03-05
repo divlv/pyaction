@@ -7,6 +7,7 @@ env:
   PY_DOCKER_CONTAINER_NAME: aeggrid
   PROJECT_PATH: /_work/pyaction/pyaction
   SECRET_USER_NAME: ${{ secrets.SECRET_USER_NAME }}
+  SECRET_SWITCH: ${{ secrets.SECRET_SWITCH }}
 
 jobs:
     prepare_all:
@@ -20,3 +21,8 @@ jobs:
             echo $MY_VAR
             echo $SECRET_USER_NAME
             docker --version
+        - name: IF statement based on secret
+          if: ${{ SECRET_SWITCH=='1' }}
+          uses: actions/checkout@v2
+          run: |
+            echo "ENTERED!"
