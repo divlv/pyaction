@@ -5,8 +5,7 @@ on: [push]
 env:
   MY_NAME: DZA-build
   PY_DOCKER_CONTAINER_NAME: aeggrid
-  PROJECT_ID: pyaction
-  PROJECT_PATH: /_work/$PROJECT_ID/$PROJECT_ID
+  PROJECT_PATH: /_work/pyaction/pyaction
 
 jobs:
 
