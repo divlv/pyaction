@@ -17,7 +17,7 @@ jobs:
       env:
         MY_VAR: Hi there! My name is
       run: |
-        echo $MY_NAME $MY_VAR.
+        echo $MY_VAR $MY_NAME
         docker --version    
 
     - name: Build Docker image
