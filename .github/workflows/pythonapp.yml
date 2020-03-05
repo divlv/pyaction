@@ -6,6 +6,7 @@ env:
   MY_NAME: DZA-build
   PY_DOCKER_CONTAINER_NAME: aeggrid
   PROJECT_PATH: /_work/pyaction/pyaction
+  SECRET_USER_NAME: ${{ secrets.SECRET_USER_NAME }}
 
 jobs:
     prepare_all:
