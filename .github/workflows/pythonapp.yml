@@ -22,6 +22,6 @@ jobs:
             echo $SECRET_USER_NAME
             docker --version
         - name: IF statement based on secret
-          if: env.SECRET_SWITCH=='0'
+          if: env.SECRET_SWITCH=='should be visible'
           run: |
-            echo "ENTERED!"
+            echo "Secrets are visible to the pipeline. OK."
