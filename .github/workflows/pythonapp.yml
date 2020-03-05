@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: Checkout source code (GitHub action)
-      uses: actions/checkout@v1
+      suses: actions/checkout@v2
     - name: Build Docker image
       run: |
         cd $PROJECT_PATH
