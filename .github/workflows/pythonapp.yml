@@ -9,8 +9,11 @@ env:
 
 jobs:
 
-    before:
+    prebuild:
+
     runs-on: [self-hosted, linux]
+
+    steps:
     - name: Show technical info
       env:
         MY_VAR: sample value
@@ -20,6 +23,7 @@ jobs:
         docker --version
 
     build:
+
     runs-on: [self-hosted, linux]
 
     steps:
