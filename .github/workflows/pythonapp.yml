@@ -4,6 +4,7 @@ on: [push]
 
 env:
   MY_NAME: DZA-build
+  PY_DOCKER_CONTAINER_NAME: aeggrid
 
 jobs:
 
@@ -17,4 +18,8 @@ jobs:
         MY_VAR: Hi there! My name is
       run: |
         echo $MY_NAME $MY_VAR.
-        docker --version
+        docker --version    
+
+    - name: Build Docker image
+      run: |
+        docker build -t $PY_DOCKER_CONTAINER_NAME .
