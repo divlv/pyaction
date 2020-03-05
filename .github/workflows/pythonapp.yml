@@ -27,9 +27,10 @@ jobs:
     runs-on: [self-hosted, linux]
 
     steps:
-        if: ${{ 1==2 }}
         - name: Checkout source code (GitHub action)
+          if: ${{ 1==2 }}
           uses: actions/checkout@v2
+
         - name: Build Docker image
           run: |
           cd $PROJECT_PATH
