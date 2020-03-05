@@ -9,15 +9,25 @@ env:
 
 jobs:
 
-  build:
+    before:
+    runs-on: [self-hosted, linux]
+    - name: Show technical info
+      env:
+        MY_VAR: sample value
+      run: |
+        echo $MY_VAR
+        echo $SECRET_USER_NAME
+        docker --version
 
+    build:
     runs-on: [self-hosted, linux]
 
     steps:
+    if: ${{ 1==2 }}
     - name: Checkout source code (GitHub action)
-      uses: actions/checkout@v2
+        uses: actions/checkout@v2
     - name: Build Docker image
-      run: |
+        run: |
         cd $PROJECT_PATH
         ls -la
         docker build -t $PY_DOCKER_CONTAINER_NAME .
