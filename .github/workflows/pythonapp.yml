@@ -29,11 +29,11 @@ jobs:
     build:
         name: Build code
         runs-on: [self-hosted, linux]
-    steps:
-        - name: Checkout source code (GitHub action)
-          uses: actions/checkout@v2
-        - name: Build Docker image
-          run: |
-            cd $PROJECT_PATH
-            ls -la
-            docker build -t $PY_DOCKER_CONTAINER_NAME .
+        steps:
+            - name: Checkout source code (GitHub action)
+              uses: actions/checkout@v2
+            - name: Build Docker image
+              run: |
+                cd $PROJECT_PATH
+                ls -la
+                docker build -t $PY_DOCKER_CONTAINER_NAME .
