@@ -5,6 +5,7 @@ on: [push]
 env:
   MY_NAME: DZA-build
   PY_DOCKER_CONTAINER_NAME: aeggrid
+  PROJECT_PATH: /opt/ptest
 
 jobs:
 
@@ -22,6 +23,9 @@ jobs:
 
     - name: Build Docker image
       run: |
+        mkdir -p $PROJECT_PATH
+        cd $PROJECT_PATH
+        git --version
         apt -y install tree
         pwd
         ls -la
