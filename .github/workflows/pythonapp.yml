@@ -2,9 +2,11 @@ name: Python application
 
 on: [push]
 
+env:
+  MY_NAME: DZA-build
+
 jobs:
-  env:
-    MY_NAME: DZA-build
+
   build:
 
     runs-on: [self-hosted, linux]
