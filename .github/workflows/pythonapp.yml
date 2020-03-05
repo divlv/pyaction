@@ -5,7 +5,8 @@ on: [push]
 env:
   MY_NAME: DZA-build
   PY_DOCKER_CONTAINER_NAME: aeggrid
-  PROJECT_PATH: /opt/ptest
+  PROJECT_ID: pyaction
+  PROJECT_PATH: /_work/$PROJECT_ID/$PROJECT_ID
 
 jobs:
 
@@ -14,21 +15,10 @@ jobs:
     runs-on: [self-hosted, linux]
 
     steps:
-    - name: Print a greeting
-      env:
-        MY_VAR: Hi there! My name is
-      run: |
-        echo $MY_VAR $MY_NAME
-        docker --version    
-    - name: checkout
+    - name: Checkout source code (GitHub action)
       uses: actions/checkout@v1
     - name: Build Docker image
       run: |
-        mkdir -p $PROJECT_PATH
         cd $PROJECT_PATH
-        git --version
-        apt -y install tree
-        pwd
         ls -la
-        tree -d /
         docker build -t $PY_DOCKER_CONTAINER_NAME .
