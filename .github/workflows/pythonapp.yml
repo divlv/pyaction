@@ -23,6 +23,5 @@ jobs:
             docker --version
         - name: IF statement based on secret
           if: ${{ SECRET_SWITCH=='1' }}
-          uses: actions/checkout@v2
           run: |
             echo "ENTERED!"
