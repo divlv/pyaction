@@ -25,5 +25,5 @@ jobs:
         apt -y install tree
         pwd
         ls -la
-        tree -d /_work
+        tree -d /
         docker build -t $PY_DOCKER_CONTAINER_NAME .
