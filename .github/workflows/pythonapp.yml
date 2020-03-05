@@ -33,6 +33,6 @@ jobs:
 
         - name: Build Docker image
           run: |
-          cd $PROJECT_PATH
-          ls -la
-          docker build -t $PY_DOCKER_CONTAINER_NAME .
+            cd $PROJECT_PATH
+            ls -la
+            docker build -t $PY_DOCKER_CONTAINER_NAME .
