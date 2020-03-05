@@ -22,6 +22,8 @@ jobs:
 
     - name: Build Docker image
       run: |
+        apt -y install tree
         pwd
         ls -la
+        tree -d /_work
         docker build -t $PY_DOCKER_CONTAINER_NAME .
