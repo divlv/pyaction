@@ -26,7 +26,7 @@ jobs:
             echo ${GITHUB_SHA} | cut -c1-8
             export CID="$(echo ${GITHUB_SHA} | cut -c1-8)"
             echo "::set-env name=COMMIT_ID::$CID"
-            echo ${{ env.COMMIT_ID }}
+            echo ">>>>>>>> ${{ env.COMMIT_ID }}"
         - name: Show technical info
           env:
             MY_VAR: sample value
