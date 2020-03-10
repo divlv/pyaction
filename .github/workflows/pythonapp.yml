@@ -63,5 +63,18 @@ jobs:
                 docker build --tag $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID .
                 echo "Pushing result to Docker registry"
                 docker push $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID
+                echo "Docker Image ready. Run it like this: docker run -it --rm $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID"
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
 
 
