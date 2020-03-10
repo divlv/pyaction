@@ -7,7 +7,7 @@ env:
   PROJECT_PATH: /_work/pyaction/pyaction
   SECRET_SWITCH: ${{ secrets.SECRET_SWITCH }}
   #
-  DOCKER_REGISTRY_PATH: ${{ secrets.DOCKER_REGISTRY_PATH }}
+  DOCKER_REGISTRY_PATH: rnr.v1.lv
   DOCKER_REGISTRY_USER: ${{ secrets.DOCKER_REGISTRY_USER }}
   DOCKER_REGISTRY_PASS: ${{ secrets.DOCKER_REGISTRY_PASS }}
   #
