@@ -23,6 +23,7 @@ jobs:
         steps:
         - name: Setup COMMIT_ID
           run: |
+            echo ${GITHUB_SHA} | cut -c1-8
             export CID="$(echo ${GITHUB_SHA} | cut -c1-8)"
             echo "::set-env name=COMMIT_ID::$CID"
         - name: Show technical info
