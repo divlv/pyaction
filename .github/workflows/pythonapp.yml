@@ -3,17 +3,14 @@ name: Python application
 on: [push]
 
 env:
-  MY_NAME: DZA-build
   PY_DOCKER_CONTAINER_NAME: aeggrid
   PROJECT_PATH: /_work/pyaction/pyaction
-  SECRET_USER_NAME: ${{ secrets.SECRET_USER_NAME }}
   SECRET_SWITCH: ${{ secrets.SECRET_SWITCH }}
   #
   DOCKER_REGISTRY_PATH: ${{ secrets.DOCKER_REGISTRY_PATH }}
   DOCKER_REGISTRY_USER: ${{ secrets.DOCKER_REGISTRY_USER }}
   DOCKER_REGISTRY_PASS: ${{ secrets.DOCKER_REGISTRY_PASS }}
   #
-  #COMMIT_ID: $(echo ${GITHUB_SHA} | cut -c1-8)
 
 
 jobs:
@@ -21,20 +18,8 @@ jobs:
         name: Initial operations
         runs-on: [self-hosted, linux]
         steps:
-        - name: Setup COMMIT_ID
-          run: |
-            echo ${GITHUB_SHA} | cut -c1-8
-            export CID="$(echo ${GITHUB_SHA} | cut -c1-8)"
-            echo "::set-env name=COMMIT_ID::$CID"
-            echo "::set-env name=COMMIT_ID::$(echo ${GITHUB_SHA} | cut -c1-8)"
-            echo ">>>>>>>> ${{ env.COMMIT_ID }}"
-            echo ">>>>>>>> ${{ env.CID }}"
         - name: Show technical info
-          env:
-            MY_VAR: sample value
           run: |
-            echo $MY_VAR
-            echo $SECRET_USER_NAME
             docker --version
             date
         - name: IF statement based on secret
@@ -74,10 +59,9 @@ jobs:
                 echo "Logging in to Docker registry $DOCKER_REGISTRY_PATH"
                 docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASS $DOCKER_REGISTRY_PATH
                 echo "Building and tagging Docker image"
-                echo "COMMIT_ID = $COMMIT_ID"
-                echo "GITHUB_SHA = ${GITHUB_SHA}"
-                docker build --tag $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:${GITHUB_SHA} .
+                echo "GITHUB_SHA = ${GITHUB_SHA}, COMMIT_ID = $COMMIT_ID"
+                docker build --tag $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID .
                 echo "Pushing result to Docker registry"
-                docker push $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:${GITHUB_SHA}
+                docker push $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID
 
 
