@@ -8,6 +8,11 @@ env:
   PROJECT_PATH: /_work/pyaction/pyaction
   SECRET_USER_NAME: ${{ secrets.SECRET_USER_NAME }}
   SECRET_SWITCH: ${{ secrets.SECRET_SWITCH }}
+  #
+  DOCKER_REGISTRY_PATH: ${{ env.DOCKER_REGISTRY_PATH }}
+  DOCKER_REGISTRY_USER: ${{ env.DOCKER_REGISTRY_USER }}
+  DOCKER_REGISTRY_PASS: ${{ env.DOCKER_REGISTRY_PASS }}
+
 
 jobs:
     prepare_all:
@@ -32,11 +37,12 @@ jobs:
         steps:
             - name: Checkout source code (GitHub action)
               uses: actions/checkout@v2
-            - name: Set up Python 3.6
+            - name: Set up Python 3
               run: |
                 apt-get -y install python3
                 apt-get -y install python3-pip
-            - name: Install dependencies
+                python3 --version
+            - name: Install Python project dependencies
               run: |
                 pip3 install -r requirements.txt
             - name: Lint with flake8
@@ -50,22 +56,11 @@ jobs:
               run: |
                 pwd
                 ls -la
-                #cd $PROJECT_PATH
-                ls -la
-                docker build -t $PY_DOCKER_CONTAINER_NAME .
-
-    job_1:
-      name: Add 3 and 7
-      runs-on: [self-hosted, linux]
-      steps:
-        - shell: bash
-          run: |
-            expr 3 + 7 > test-artf.txt
-        - name: Upload math result for job 1
-          uses: actions/upload-artifact@v1
-          with:
-            name: test-artf
-            path: test-artf.txt
-
+                echo "Logging in to Docker registry $DOCKER_REGISTRY_PATH"
+                docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASS $DOCKER_REGISTRY_PATH
+                echo "Building and tagging Docker image"
+                docker build --tag $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME .
+                echo "Pushing result to Docker registry"
+                docker push $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME
 
 

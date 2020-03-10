@@ -5,5 +5,3 @@ from datetime import datetime
 
 
 print('Python App is working. Time =', datetime.now())
-
-kjhk('sdsddss')
