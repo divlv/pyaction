@@ -29,7 +29,6 @@ jobs:
             echo ">>>>>>>> ${{ env.COMMIT_ID }}"
             echo ">>>>>>>> ${{ env.CID }}"
             echo ">>>>>>>> ${{ CID }}"
-            echo ">>>>>>>> $CID"
         - name: Show technical info
           env:
             MY_VAR: sample value
