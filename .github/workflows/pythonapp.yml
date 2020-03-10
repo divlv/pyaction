@@ -68,8 +68,10 @@ jobs:
                 echo "Logging in to Docker registry $DOCKER_REGISTRY_PATH"
                 docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASS $DOCKER_REGISTRY_PATH
                 echo "Building and tagging Docker image"
-                docker build --tag $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID .
+                echo "COMMIT_ID = $COMMIT_ID"
+                echo "GITHUB_SHA = ${GITHUB_SHA}"
+                docker build --tag $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:${GITHUB_SHA} .
                 echo "Pushing result to Docker registry"
-                docker push $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID
+                docker push $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:${GITHUB_SHA}
 
 
