@@ -7,7 +7,7 @@ env:
   PROJECT_PATH: /_work/pyaction/pyaction
   SECRET_SWITCH: ${{ secrets.SECRET_SWITCH }}
   #
-  DOCKER_REGISTRY_PATH: rnr.v1.lv
+  DOCKER_REGISTRY_URL: rnr.v1.lv
   DOCKER_REGISTRY_USER: ${{ secrets.DOCKER_REGISTRY_USER }}
   DOCKER_REGISTRY_PASS: ${{ secrets.DOCKER_REGISTRY_PASS }}
   #
@@ -56,14 +56,14 @@ jobs:
               run: |
                 pwd
                 ls -la
-                echo "Logging in to Docker registry $DOCKER_REGISTRY_PATH"
-                docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASS $DOCKER_REGISTRY_PATH
+                echo "Logging in to Docker registry $DOCKER_REGISTRY_URL"
+                docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASS $DOCKER_REGISTRY_URL
                 echo "Building and tagging Docker image"
                 echo "GITHUB_SHA = ${GITHUB_SHA}, COMMIT_ID = $COMMIT_ID"
-                docker build --tag $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID .
+                docker build --tag $DOCKER_REGISTRY_URL/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID .
                 echo "Pushing result to Docker registry"
-                docker push $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID
-                echo "Docker Image ready. Run it like this: docker run -it --rm $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID"
+                docker push $DOCKER_REGISTRY_URL/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID
+                echo "Docker Image ready. Run it like this: docker run -it --rm $DOCKER_REGISTRY_URL/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID"
                 
                 
                 
