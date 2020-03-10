@@ -70,8 +70,10 @@ jobs:
                 echo "Building and tagging Docker image"
                 echo "COMMIT_ID = $COMMIT_ID"
                 echo "GITHUB_SHA = ${GITHUB_SHA}"
-                docker build --tag $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:${GITHUB_SHA} .
+                #docker build --tag $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:${GITHUB_SHA} .
+                docker build --tag $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:latest .
                 echo "Pushing result to Docker registry"
-                docker push $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:${GITHUB_SHA}
+                #docker push $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:${GITHUB_SHA}
+                docker push $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:latest
 
 
