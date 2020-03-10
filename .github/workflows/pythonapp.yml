@@ -12,6 +12,8 @@ env:
   DOCKER_REGISTRY_PATH: ${{ secrets.DOCKER_REGISTRY_PATH }}
   DOCKER_REGISTRY_USER: ${{ secrets.DOCKER_REGISTRY_USER }}
   DOCKER_REGISTRY_PASS: ${{ secrets.DOCKER_REGISTRY_PASS }}
+  #
+  COMMIT_ID: ${GITHUB_SHA::8}
 
 
 jobs:
@@ -59,8 +61,8 @@ jobs:
                 echo "Logging in to Docker registry $DOCKER_REGISTRY_PATH"
                 docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASS $DOCKER_REGISTRY_PATH
                 echo "Building and tagging Docker image"
-                docker build --tag $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME .
+                docker build --tag $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID .
                 echo "Pushing result to Docker registry"
-                docker push $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME
+                docker push $DOCKER_REGISTRY_PATH/$PY_DOCKER_CONTAINER_NAME:$COMMIT_ID
 
 
