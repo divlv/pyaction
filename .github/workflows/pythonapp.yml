@@ -48,7 +48,9 @@ jobs:
                 flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
             - name: Build Docker image
               run: |
-                cd $PROJECT_PATH
+                pwd
+                ls -la
+                #cd $PROJECT_PATH
                 ls -la
                 docker build -t $PY_DOCKER_CONTAINER_NAME .
 
